@@ -1,3 +1,5 @@
+using Learning_Tracker.Forms;
+using System.Diagnostics;
 namespace Learning_Tracker
 {
     internal static class Program
@@ -11,7 +13,8 @@ namespace Learning_Tracker
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Debug.WriteLine("【DEBUG】LoginForm 构造函数被调用");
+            Application.Run(new LoginForm());
         }
     }
 }
