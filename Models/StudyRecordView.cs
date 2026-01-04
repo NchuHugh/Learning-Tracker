@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LearningTracker.Models
+namespace Learning_Tracker.Models
 {
     public class StudyRecordView
     {
