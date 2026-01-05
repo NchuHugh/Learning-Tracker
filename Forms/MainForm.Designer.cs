@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
+            btnTask = new Button();
             btnLogout = new Button();
             btnRefresh = new Button();
             btnAddRecord = new Button();
@@ -47,6 +48,7 @@
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(45, 45, 48);
+            panelTop.Controls.Add(btnTask);
             panelTop.Controls.Add(btnLogout);
             panelTop.Controls.Add(btnRefresh);
             panelTop.Controls.Add(btnAddRecord);
@@ -56,6 +58,21 @@
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1000, 70);
             panelTop.TabIndex = 0;
+            // 
+            // btnTask
+            // 
+            btnTask.BackColor = Color.OrangeRed;
+            btnTask.FlatAppearance.BorderSize = 0;
+            btnTask.FlatStyle = FlatStyle.Flat;
+            btnTask.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
+            btnTask.ForeColor = Color.White;
+            btnTask.Location = new Point(479, 20);
+            btnTask.Name = "btnTask";
+            btnTask.Size = new Size(110, 35);
+            btnTask.TabIndex = 4;
+            btnTask.Text = "学习任务";
+            btnTask.UseVisualStyleBackColor = false;
+            btnTask.Click += btnTask_Click;
             // 
             // btnLogout
             // 
@@ -125,12 +142,6 @@
             dgvRecords.BorderStyle = BorderStyle.None;
             dgvRecords.ColumnHeadersHeight = 40;
             dgvRecords.Columns.AddRange(new DataGridViewColumn[] { colId, colSubject, colContent, colStudyTime, colStudyDate, colCreateTime });
-            colId.DataPropertyName = "Id";
-            colSubject.DataPropertyName = "Subject";
-            colContent.DataPropertyName = "Content";
-            colStudyTime.DataPropertyName = "StudyTime";
-            colStudyDate.DataPropertyName = "StudyDate";
-            colCreateTime.DataPropertyName = "CreateTime";
             dgvRecords.Dock = DockStyle.Fill;
             dgvRecords.Location = new Point(0, 70);
             dgvRecords.Name = "dgvRecords";
@@ -142,10 +153,10 @@
             dgvRecords.Size = new Size(1000, 530);
             dgvRecords.TabIndex = 1;
             dgvRecords.CellDoubleClick += dgvRecords_CellDoubleClick;
-
             // 
             // colId
             // 
+            colId.DataPropertyName = "Id";
             colId.HeaderText = "Id";
             colId.MinimumWidth = 8;
             colId.Name = "colId";
@@ -154,6 +165,7 @@
             // 
             // colSubject
             // 
+            colSubject.DataPropertyName = "Subject";
             colSubject.FillWeight = 80F;
             colSubject.HeaderText = "学习科目";
             colSubject.MinimumWidth = 8;
@@ -162,6 +174,7 @@
             // 
             // colContent
             // 
+            colContent.DataPropertyName = "Content";
             colContent.FillWeight = 150F;
             colContent.HeaderText = "学习内容";
             colContent.MinimumWidth = 8;
@@ -170,6 +183,7 @@
             // 
             // colStudyTime
             // 
+            colStudyTime.DataPropertyName = "StudyTime";
             colStudyTime.FillWeight = 80F;
             colStudyTime.HeaderText = "学习时长(min)";
             colStudyTime.MinimumWidth = 8;
@@ -178,6 +192,7 @@
             // 
             // colStudyDate
             // 
+            colStudyDate.DataPropertyName = "StudyDate";
             colStudyDate.FillWeight = 90F;
             colStudyDate.HeaderText = "学习日期";
             colStudyDate.MinimumWidth = 8;
@@ -186,6 +201,7 @@
             // 
             // colCreateTime
             // 
+            colCreateTime.DataPropertyName = "CreateTime";
             colCreateTime.HeaderText = "记录时间";
             colCreateTime.MinimumWidth = 8;
             colCreateTime.Name = "colCreateTime";
@@ -225,5 +241,6 @@
         private DataGridViewTextBoxColumn colStudyTime;
         private DataGridViewTextBoxColumn colStudyDate;
         private DataGridViewTextBoxColumn colCreateTime;
+        private Button btnTask;
     }
 }

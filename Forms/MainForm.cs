@@ -60,6 +60,9 @@ public partial class MainForm : Form
         LoadRecords();
     }
 
+    /*
+     * 添加记录按钮点击事件
+     */
     private void btnAddRecord_Click(object sender, EventArgs e)
     {
         using (RecordForm form = new RecordForm(_userId))
@@ -71,6 +74,9 @@ public partial class MainForm : Form
         }
     }
 
+    /*
+     * 双击记录行，打开编辑窗口
+     */
     private void dgvRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0)
@@ -87,6 +93,14 @@ public partial class MainForm : Form
                 LoadRecords();
             }
         }
+    }
+    /*
+     * 打开任务管理
+     */
+    private void btnTask_Click(object sender, EventArgs e)
+    {
+        TaskForm taskForm = new TaskForm(_userId);
+        taskForm.ShowDialog();   // 推荐用 ShowDialog
     }
 
 }
