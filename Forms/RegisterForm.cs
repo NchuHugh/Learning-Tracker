@@ -43,5 +43,10 @@ namespace Learning_Tracker.Forms
                 MessageBox.Show("用户名已存在");
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

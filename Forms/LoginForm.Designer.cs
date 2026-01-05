@@ -17,94 +17,159 @@
 
         private void InitializeComponent()
         {
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            panelTop = new Panel();
+            lblTitle = new Label();
+            panelMain = new Panel();
+            btnRegister = new Button();
+            btnLogin = new Button();
+            txtPassword = new TextBox();
+            txtUsername = new TextBox();
+            lblPassword = new Label();
+            lblUsername = new Label();
+            panelTop.SuspendLayout();
+            panelMain.SuspendLayout();
+            SuspendLayout();
             // 
-            // lblUsername
+            // panelTop
             // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(45, 45);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(52, 15);
-            this.lblUsername.TabIndex = 0;
-            this.lblUsername.Text = "用户名:";
+            panelTop.BackColor = Color.FromArgb(45, 45, 48);
+            panelTop.Controls.Add(lblTitle);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(450, 80);
+            panelTop.TabIndex = 0;
             // 
-            // txtUsername
+            // lblTitle
             // 
-            this.txtUsername.Location = new System.Drawing.Point(110, 42);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(180, 25);
-            this.txtUsername.TabIndex = 1;
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("微软雅黑", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(85, 19);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(274, 42);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "学习记录管理系统";
             // 
-            // lblPassword
+            // panelMain
             // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(45, 90);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(52, 15);
-            this.lblPassword.TabIndex = 2;
-            this.lblPassword.Text = "密  码:";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(110, 87);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*'; // 按照要求设置
-            this.txtPassword.Size = new System.Drawing.Size(180, 25);
-            this.txtPassword.TabIndex = 3;
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.Location = new System.Drawing.Point(110, 135);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(80, 30);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "登录";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            panelMain.BackColor = Color.White;
+            panelMain.Controls.Add(btnRegister);
+            panelMain.Controls.Add(btnLogin);
+            panelMain.Controls.Add(txtPassword);
+            panelMain.Controls.Add(txtUsername);
+            panelMain.Controls.Add(lblPassword);
+            panelMain.Controls.Add(lblUsername);
+            panelMain.Dock = DockStyle.Fill;
+            panelMain.Location = new Point(0, 80);
+            panelMain.Name = "panelMain";
+            panelMain.Padding = new Padding(40);
+            panelMain.Size = new Size(450, 270);
+            panelMain.TabIndex = 1;
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(210, 135);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(80, 30);
-            this.btnRegister.TabIndex = 5;
-            this.btnRegister.Text = "注册";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            btnRegister.BackColor = Color.FromArgb(108, 117, 125);
+            btnRegister.FlatAppearance.BorderSize = 0;
+            btnRegister.FlatStyle = FlatStyle.Flat;
+            btnRegister.Font = new Font("微软雅黑", 11F, FontStyle.Bold);
+            btnRegister.ForeColor = Color.White;
+            btnRegister.Location = new Point(240, 180);
+            btnRegister.Name = "btnRegister";
+            btnRegister.Size = new Size(140, 45);
+            btnRegister.TabIndex = 5;
+            btnRegister.Text = "注册账号";
+            btnRegister.UseVisualStyleBackColor = false;
+            btnRegister.Click += btnRegister_Click;
+            // 
+            // btnLogin
+            // 
+            btnLogin.BackColor = Color.FromArgb(0, 123, 255);
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("微软雅黑", 11F, FontStyle.Bold);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.Location = new Point(70, 180);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(140, 45);
+            btnLogin.TabIndex = 4;
+            btnLogin.Text = "登录";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
+            // 
+            // txtPassword
+            // 
+            txtPassword.BorderStyle = BorderStyle.FixedSingle;
+            txtPassword.Font = new Font("微软雅黑", 11F);
+            txtPassword.Location = new Point(70, 115);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '●';
+            txtPassword.Size = new Size(310, 37);
+            txtPassword.TabIndex = 3;
+            // 
+            // txtUsername
+            // 
+            txtUsername.BorderStyle = BorderStyle.FixedSingle;
+            txtUsername.Font = new Font("微软雅黑", 11F);
+            txtUsername.Location = new Point(70, 50);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(310, 37);
+            txtUsername.TabIndex = 1;
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
+            lblPassword.ForeColor = Color.FromArgb(64, 64, 64);
+            lblPassword.Location = new Point(66, 90);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(72, 27);
+            lblPassword.TabIndex = 2;
+            lblPassword.Text = "密码：";
+            // 
+            // lblUsername
+            // 
+            lblUsername.AutoSize = true;
+            lblUsername.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
+            lblUsername.ForeColor = Color.FromArgb(64, 64, 64);
+            lblUsername.Location = new Point(66, 25);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(92, 27);
+            lblUsername.TabIndex = 0;
+            lblUsername.Text = "用户名：";
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 200);
-            this.Controls.Add(this.lblUsername);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.btnRegister);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "LoginForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "系统登录";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = btnLogin;
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(450, 350);
+            Controls.Add(panelMain);
+            Controls.Add(panelTop);
+            Font = new Font("微软雅黑", 9F);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "系统登录";
+            panelTop.ResumeLayout(false);
+            panelTop.PerformLayout();
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblPassword;
     }
 }

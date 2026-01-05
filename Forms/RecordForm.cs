@@ -22,6 +22,7 @@ namespace Learning_Tracker.Forms
             InitializeComponent();
             _userId = userId;
             _isEditMode = false;
+            RecordForm_Load(this, EventArgs.Empty);
         }
 
         // Edit 模式
@@ -32,13 +33,14 @@ namespace Learning_Tracker.Forms
             _userId = record.UserId;
             _isEditMode = true;
             dtpStudyDate.Enabled = false; // 编辑模式下不允许修改日期
+            RecordForm_Load(this, EventArgs.Empty);
         }
         private void RecordForm_Load(object sender, EventArgs e)
         {
             if (_isEditMode)
             {
                 this.Text = "编辑学习记录";
-
+                lblTitle.Text = "编辑学习记录";
                 txtSubject.Text = _record.Subject;
                 txtContent.Text = _record.Content;
                 txtStudyTime.Text = _record.StudyTime.ToString();
@@ -47,6 +49,7 @@ namespace Learning_Tracker.Forms
             else
             {
                 this.Text = "新增学习记录";
+                lblTitle.Text = "新增学习记录";
                 dtpStudyDate.Value = DateTime.Today;
             }
         }
