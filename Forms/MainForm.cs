@@ -62,11 +62,28 @@ public partial class MainForm : Form
 
     private void btnAddRecord_Click(object sender, EventArgs e)
     {
-        using (AddRecordForm form = new AddRecordForm(_userId))
+        using (RecordForm form = new RecordForm(_userId))
         {
             if (form.ShowDialog() == DialogResult.OK)
             {
-                // 子窗口添加成功后，刷新列表
+                LoadRecords();
+            }
+        }
+    }
+
+    private void dgvRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.RowIndex < 0)
+            return;
+
+        StudyRecord record = dgvRecords.Rows[e.RowIndex].DataBoundItem as StudyRecord;
+        if (record == null)
+            return;
+
+        using (RecordForm form = new RecordForm(record))
+        {
+            if (form.ShowDialog() == DialogResult.OK)
+            {
                 LoadRecords();
             }
         }

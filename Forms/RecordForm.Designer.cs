@@ -1,6 +1,6 @@
 ﻿namespace Learning_Tracker.Forms
 {
-    partial class AddRecordForm
+    partial class RecordForm
     {
         /// <summary>
         /// Required designer variable.
@@ -114,7 +114,7 @@
             btnAddRecord.TabIndex = 8;
             btnAddRecord.Text = "添加记录";
             btnAddRecord.UseVisualStyleBackColor = false;
-            btnAddRecord.Click += btnAdd_Click;
+            btnAddRecord.Click += btnSave_Click;
             // 
             // dtpStudyDate
             // 

@@ -141,6 +141,8 @@
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(1000, 530);
             dgvRecords.TabIndex = 1;
+            dgvRecords.CellDoubleClick += dgvRecords_CellDoubleClick;
+
             // 
             // colId
             // 
