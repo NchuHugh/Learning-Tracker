@@ -115,5 +115,24 @@ public static class StudyRecordDAL
         return Convert.ToInt32(result) > 0;
     }
 
+    public static bool HasLinkedTaskRecord(int userId, int taskId)
+    {
+        string sql = @"
+            SELECT COUNT(1)
+            FROM study_record
+            WHERE user_id = @userId
+              AND subject LIKE @pattern";
+
+        string pattern = $"#{taskId} %";
+
+        object result = DBHelper.ExecuteScalar(
+            sql,
+            new MySqlParameter("@userId", userId),
+            new MySqlParameter("@pattern", pattern)
+        );
+
+        return Convert.ToInt32(result) > 0;
+    }
+
 
 }

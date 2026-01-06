@@ -36,10 +36,12 @@
             dtpStudyDate = new DateTimePicker();
             txtStudyTime = new TextBox();
             txtContent = new TextBox();
+            cmbTask = new ComboBox();
             txtSubject = new TextBox();
             lblStudyDate = new Label();
             lblStudyTime = new Label();
             lblContent = new Label();
+            lblTask = new Label();
             lblSubject = new Label();
             panelTop.SuspendLayout();
             panelMain.SuspendLayout();
@@ -74,10 +76,12 @@
             panelMain.Controls.Add(dtpStudyDate);
             panelMain.Controls.Add(txtStudyTime);
             panelMain.Controls.Add(txtContent);
+            panelMain.Controls.Add(cmbTask);
             panelMain.Controls.Add(txtSubject);
             panelMain.Controls.Add(lblStudyDate);
             panelMain.Controls.Add(lblStudyTime);
             panelMain.Controls.Add(lblContent);
+            panelMain.Controls.Add(lblTask);
             panelMain.Controls.Add(lblSubject);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 60);
@@ -93,7 +97,7 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(260, 360);
+            btnCancel.Location = new Point(260, 420);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(180, 45);
             btnCancel.TabIndex = 9;
@@ -108,7 +112,7 @@
             btnAddRecord.FlatStyle = FlatStyle.Flat;
             btnAddRecord.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
             btnAddRecord.ForeColor = Color.White;
-            btnAddRecord.Location = new Point(60, 360);
+            btnAddRecord.Location = new Point(60, 420);
             btnAddRecord.Name = "btnAddRecord";
             btnAddRecord.Size = new Size(180, 45);
             btnAddRecord.TabIndex = 8;
@@ -120,7 +124,7 @@
             // 
             dtpStudyDate.CalendarFont = new Font("微软雅黑", 10F);
             dtpStudyDate.Font = new Font("微软雅黑", 10F);
-            dtpStudyDate.Location = new Point(56, 305);
+            dtpStudyDate.Location = new Point(56, 365);
             dtpStudyDate.Name = "dtpStudyDate";
             dtpStudyDate.Size = new Size(380, 34);
             dtpStudyDate.TabIndex = 7;
@@ -128,7 +132,7 @@
             // txtStudyTime
             // 
             txtStudyTime.Font = new Font("微软雅黑", 10F);
-            txtStudyTime.Location = new Point(60, 240);
+            txtStudyTime.Location = new Point(60, 300);
             txtStudyTime.Name = "txtStudyTime";
             txtStudyTime.Size = new Size(380, 34);
             txtStudyTime.TabIndex = 6;
@@ -136,27 +140,37 @@
             // txtContent
             // 
             txtContent.Font = new Font("微软雅黑", 10F);
-            txtContent.Location = new Point(60, 130);
+            txtContent.Location = new Point(60, 190);
             txtContent.Multiline = true;
             txtContent.Name = "txtContent";
             txtContent.ScrollBars = ScrollBars.Vertical;
             txtContent.Size = new Size(380, 60);
             txtContent.TabIndex = 5;
             // 
+            // cmbTask
+            // 
+            cmbTask.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTask.Font = new Font("微软雅黑", 10F);
+            cmbTask.FormattingEnabled = true;
+            cmbTask.Location = new Point(60, 60);
+            cmbTask.Name = "cmbTask";
+            cmbTask.Size = new Size(380, 35);
+            cmbTask.TabIndex = 4;
+            // 
             // txtSubject
             // 
             txtSubject.Font = new Font("微软雅黑", 10F);
-            txtSubject.Location = new Point(60, 60);
+            txtSubject.Location = new Point(60, 125);
             txtSubject.Name = "txtSubject";
             txtSubject.Size = new Size(380, 34);
-            txtSubject.TabIndex = 4;
+            txtSubject.TabIndex = 5;
             // 
             // lblStudyDate
             // 
             lblStudyDate.AutoSize = true;
             lblStudyDate.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
             lblStudyDate.ForeColor = Color.FromArgb(64, 64, 64);
-            lblStudyDate.Location = new Point(56, 275);
+            lblStudyDate.Location = new Point(56, 335);
             lblStudyDate.Name = "lblStudyDate";
             lblStudyDate.Size = new Size(112, 27);
             lblStudyDate.TabIndex = 3;
@@ -167,7 +181,7 @@
             lblStudyTime.AutoSize = true;
             lblStudyTime.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
             lblStudyTime.ForeColor = Color.FromArgb(64, 64, 64);
-            lblStudyTime.Location = new Point(56, 215);
+            lblStudyTime.Location = new Point(56, 270);
             lblStudyTime.Name = "lblStudyTime";
             lblStudyTime.Size = new Size(192, 27);
             lblStudyTime.TabIndex = 2;
@@ -178,18 +192,29 @@
             lblContent.AutoSize = true;
             lblContent.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
             lblContent.ForeColor = Color.FromArgb(64, 64, 64);
-            lblContent.Location = new Point(56, 105);
+            lblContent.Location = new Point(56, 165);
             lblContent.Name = "lblContent";
             lblContent.Size = new Size(112, 27);
             lblContent.TabIndex = 1;
             lblContent.Text = "学习内容：";
+            // 
+            // lblTask
+            // 
+            lblTask.AutoSize = true;
+            lblTask.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
+            lblTask.ForeColor = Color.FromArgb(64, 64, 64);
+            lblTask.Location = new Point(56, 35);
+            lblTask.Name = "lblTask";
+            lblTask.Size = new Size(112, 27);
+            lblTask.TabIndex = 0;
+            lblTask.Text = "关联任务：";
             // 
             // lblSubject
             // 
             lblSubject.AutoSize = true;
             lblSubject.Font = new Font("微软雅黑", 10F, FontStyle.Bold);
             lblSubject.ForeColor = Color.FromArgb(64, 64, 64);
-            lblSubject.Location = new Point(56, 35);
+            lblSubject.Location = new Point(56, 100);
             lblSubject.Name = "lblSubject";
             lblSubject.Size = new Size(112, 27);
             lblSubject.TabIndex = 0;
@@ -200,7 +225,7 @@
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(510, 517);
+            ClientSize = new Size(510, 570);
             Controls.Add(panelMain);
             Controls.Add(panelTop);
             Font = new Font("微软雅黑", 9F);
@@ -233,5 +258,7 @@
         private System.Windows.Forms.DateTimePicker dtpStudyDate;
         private System.Windows.Forms.Button btnAddRecord;
         private System.Windows.Forms.Button btnCancel;
+        private ComboBox cmbTask;
+        private Label lblTask;
     }
 }

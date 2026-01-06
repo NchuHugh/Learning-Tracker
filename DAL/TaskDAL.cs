@@ -33,6 +33,7 @@ namespace Learning_Tracker.DAL
         SELECT
             t.id,
             t.title,
+            t.category_id,
             c.name AS category_name,
             t.target_minutes,
             t.status,
@@ -57,6 +58,7 @@ namespace Learning_Tracker.DAL
                 {
                     Id = Convert.ToInt32(row["id"]),
                     Title = row["title"].ToString(),
+                    CategoryId = Convert.ToInt32(row["category_id"]),
                     CategoryName = row["category_name"].ToString(),
                     TargetMinutes = Convert.ToInt32(row["target_minutes"]),
                     Status = row["status"].ToString(),
@@ -72,7 +74,78 @@ namespace Learning_Tracker.DAL
 
 
 
-        public static void Update(Models.Task task) { }
+        public static Models.Task? GetById(int id, int userId)
+        {
+            string sql = @"
+                SELECT id, user_id, category_id, title, target_minutes, start_date, end_date, status, create_time
+                FROM task
+                WHERE id = @id AND user_id = @userId";
+
+            DataTable dt = DBHelper.ExecuteQuery(
+                sql,
+                new MySqlParameter("@id", id),
+                new MySqlParameter("@userId", userId)
+            );
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            DataRow row = dt.Rows[0];
+
+            return new Models.Task
+            {
+                Id = Convert.ToInt32(row["id"]),
+                UserId = Convert.ToInt32(row["user_id"]),
+                CategoryId = Convert.ToInt32(row["category_id"]),
+                Title = row["title"].ToString(),
+                TargetMinutes = Convert.ToInt32(row["target_minutes"]),
+                StartDate = Convert.ToDateTime(row["start_date"]),
+                EndDate = row["end_date"] == DBNull.Value ? null : Convert.ToDateTime(row["end_date"]),
+                Status = row["status"].ToString(),
+                CreateTime = Convert.ToDateTime(row["create_time"])
+            };
+        }
+
+        public static int Update(Models.Task task)
+        {
+            string sql = @"
+                UPDATE task
+                SET
+                    category_id = @categoryId,
+                    title = @title,
+                    target_minutes = @minutes,
+                    start_date = @startDate,
+                    end_date = @endDate,
+                    status = @status
+                WHERE id = @id
+                  AND user_id = @userId";
+
+            return DBHelper.ExecuteNonQuery(
+                sql,
+                new MySqlParameter("@categoryId", task.CategoryId),
+                new MySqlParameter("@title", task.Title),
+                new MySqlParameter("@minutes", task.TargetMinutes),
+                new MySqlParameter("@startDate", task.StartDate),
+                new MySqlParameter("@endDate", (object?)task.EndDate ?? DBNull.Value),
+                new MySqlParameter("@status", task.Status),
+                new MySqlParameter("@id", task.Id),
+                new MySqlParameter("@userId", task.UserId)
+            );
+        }
+
+        public static int Delete(int id, int userId)
+        {
+            string sql = @"
+                DELETE FROM task
+                WHERE id = @id
+                  AND user_id = @userId";
+
+            return DBHelper.ExecuteNonQuery(
+                sql,
+                new MySqlParameter("@id", id),
+                new MySqlParameter("@userId", userId)
+            );
+        }
 
 
     }

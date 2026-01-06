@@ -1,4 +1,5 @@
 ﻿using Learning_Tracker.Models;
+using Learning_Tracker.DAL;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Learning_Tracker.Forms
         private readonly int _userId;
         private StudyRecord _record;
         private readonly bool _isEditMode;
+
+        private List<TaskViewModel> _tasks = new();
 
         // Add 模式
         public RecordForm(int userId)
@@ -37,11 +40,16 @@ namespace Learning_Tracker.Forms
         }
         private void RecordForm_Load(object sender, EventArgs e)
         {
+            LoadTasks();
+
             if (_isEditMode)
             {
                 this.Text = "编辑学习记录";
                 lblTitle.Text = "编辑学习记录";
-                txtSubject.Text = _record.Subject;
+                if (TaskLinkHelper.TryParseTaskId(_record.Subject, out int taskId))
+                    cmbTask.SelectedValue = taskId;
+
+                txtSubject.Text = TaskLinkHelper.ExtractOriginalSubject(_record.Subject);
                 txtContent.Text = _record.Content;
                 txtStudyTime.Text = _record.StudyTime.ToString();
                 dtpStudyDate.Value = _record.StudyDate;
@@ -54,9 +62,30 @@ namespace Learning_Tracker.Forms
             }
         }
 
+        private void LoadTasks()
+        {
+            _tasks = TaskDAL.GetByUserId(_userId);
+
+            cmbTask.DisplayMember = "Title";
+            cmbTask.ValueMember = "Id";
+            cmbTask.DataSource = _tasks;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             // 1️⃣ 校验
+            if (cmbTask.SelectedValue == null)
+            {
+                MessageBox.Show("请选择关联任务");
+                return;
+            }
+
+            if (_tasks.Count == 0)
+            {
+                MessageBox.Show("请先创建学习任务，再新增学习记录。");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtSubject.Text))
             {
                 MessageBox.Show("请输入学习主题");
@@ -72,9 +101,14 @@ namespace Learning_Tracker.Forms
             }
 
             // 2️⃣ 组装 / 更新 Model
+            int taskId = Convert.ToInt32(cmbTask.SelectedValue);
+            TaskViewModel? taskVm = cmbTask.SelectedItem as TaskViewModel;
+            string taskTitle = taskVm?.Title ?? "";
+            string encodedSubject = TaskLinkHelper.BuildSubject(taskId, taskTitle, txtSubject.Text);
+
             if (_isEditMode)
             {
-                _record.Subject = txtSubject.Text.Trim();
+                _record.Subject = encodedSubject;
                 _record.Content = txtContent.Text.Trim();
                 _record.StudyTime = studyTime;
                 _record.StudyDate = dtpStudyDate.Value.Date;
@@ -84,7 +118,7 @@ namespace Learning_Tracker.Forms
                 _record = new StudyRecord
                 {
                     UserId = _userId,
-                    Subject = txtSubject.Text.Trim(),
+                    Subject = encodedSubject,
                     Content = txtContent.Text.Trim(),
                     StudyTime = studyTime,
                     StudyDate = dtpStudyDate.Value.Date

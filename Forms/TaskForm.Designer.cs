@@ -140,6 +140,7 @@
             btnReset.TabIndex = 13;
             btnReset.Text = "清空";
             btnReset.UseVisualStyleBackColor = false;
+            btnReset.Click += btnReset_Click;
             // 
             // btnSave
             // 
@@ -172,6 +173,7 @@
             dtpEnd.Font = new Font("微软雅黑", 10F);
             dtpEnd.Location = new Point(25, 395);
             dtpEnd.Name = "dtpEnd";
+            dtpEnd.ShowCheckBox = true;
             dtpEnd.Size = new Size(370, 34);
             dtpEnd.TabIndex = 10;
             // 
@@ -384,6 +386,7 @@
             btnDelete.TabIndex = 1;
             btnDelete.Text = "删除任务";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
@@ -398,6 +401,7 @@
             btnEdit.TabIndex = 0;
             btnEdit.Text = "编辑任务";
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // TaskForm
             // 

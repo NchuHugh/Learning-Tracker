@@ -1,0 +1,56 @@
+﻿create database learning_tracker;
+use learning_tracker;
+DROP TABLE IF EXISTS  user;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS study_record;
+DROP TABLE IF EXISTS task;
+CREATE TABLE user
+(
+    id          INT PRIMARY KEY AUTO_INCREMENT,
+    username    VARCHAR(20) NOT NULL UNIQUE,
+    password    VARCHAR(50) NOT NULL,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE category
+(
+    id          INT PRIMARY KEY AUTO_INCREMENT,
+    name        VARCHAR(20) NOT NULL UNIQUE,
+    description VARCHAR(50),
+    color       VARCHAR(10),       -- UI用（进度条 / 图表）
+    is_active   TINYINT(1) DEFAULT 1
+);
+CREATE TABLE task
+(
+    id            INT PRIMARY KEY AUTO_INCREMENT,
+    user_id       INT NOT NULL,
+    category_id   INT NOT NULL,
+
+    title         VARCHAR(50) NOT NULL,
+    target_minutes INT NOT NULL,       -- 计划总时长
+    start_date    DATE NOT NULL,
+    end_date      DATE,
+
+    status        ENUM('ongoing','finished','abandoned') DEFAULT 'ongoing',
+    create_time   DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (category_id) REFERENCES category(id)
+);
+CREATE TABLE study_record 
+(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+
+    subject VARCHAR(50) NOT NULL,      -- 学习主题
+    content VARCHAR(300),              -- 学习内容 / 总结
+    study_time INT NOT NULL,            -- 学习时长（分钟）
+    study_date DATE NOT NULL,           -- 学习日期
+
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_record_user
+        FOREIGN KEY (user_id) REFERENCES user(id)
+        ON DELETE CASCADE,
+
+    UNIQUE (user_id, study_date)
+);
